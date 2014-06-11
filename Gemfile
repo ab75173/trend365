@@ -28,8 +28,6 @@ gem 'spring',        group: :development
 
 gem 'rails_12factor', group: :production
 
-gem 'httparty'
-
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 2.14.0'
