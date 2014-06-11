@@ -8,6 +8,8 @@ class ArticlesController < ApplicationController
     @results = get_search_results(@keyword)
   end
 
+  def show
+  end
 
   private
 

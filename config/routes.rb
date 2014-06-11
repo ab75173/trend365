@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # resources
-  resources :articles, only: [:show]
+  resources :articles, only: [:show] do
+    resources :sentiments, only: [:index]
+  end
   resources :password_resets
   resources :sessions
   resources :users
