@@ -3,6 +3,8 @@ require "httparty"
 # handles Alchemy API calls and responses
 # Docs: http://www.alchemyapi.com/api/
 class AlchemyAPI
+  attr_reader :options, :response
+
   # base url for Alchemy API
   BASE_URL = "http://access.alchemyapi.com/"
   API_KEY = Rails.application.secrets['alchemy_api_key']
@@ -23,11 +25,8 @@ class AlchemyAPI
     request_params = options.to_query
     request_url = [endpoint, request_params].join("?")
 
-    HTTParty.get( request_url )
-  end
+    @response = HTTParty.get( request_url )
 
-  private
-  def options
-    @options
+    return response["results"]["keywords"]["keyword"]
   end
 end
