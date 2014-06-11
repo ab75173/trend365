@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
 
   def get_search_results(keyword)
     keyword = keyword.gsub(' ', '%20')
-    key = ENV['NYT_API_KEY']
+    key = Rails.application.secrets[:nyt_api_key]
     results = HTTParty.get("http://api.nytimes.com/svc/search/v2/articlesearch.json?fq=#{keyword}&api-key=#{key}")
     return results["response"]["docs"]
   end
