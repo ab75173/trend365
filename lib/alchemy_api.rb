@@ -5,6 +5,29 @@ require "httparty"
 class AlchemyAPI
   # base url for Alchemy API
   BASE_URL = "http://access.alchemyapi.com/"
+  API_KEY = Rails.application.secrets['alchemy_api_key']
 
+  def initialize(url)
+    @options = {
+      :apikey             => API_KEY,
+      :keywordExtractMode => "strict",
+      :maxRetrieve        => 5,
+      :sentiment          => 1,
+      :url                => url
+    }
+  end
 
+  # calls API and extracts keyword sentiment
+  def extract_keyword_sentiment
+    endpoint = BASE_URL + "calls/url/URLGetRankedKeywords"
+    request_params = options.to_query
+    request_url = [endpoint, request_params].join("?")
+
+    HTTParty.get( request_url )
+  end
+
+  private
+  def options
+    @options
+  end
 end
