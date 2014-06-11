@@ -9,17 +9,17 @@ class AlchemyAPI
   BASE_URL = "http://access.alchemyapi.com/"
   API_KEY = Rails.application.secrets['alchemy_api_key']
 
-  def initialize(url)
+  def initialize(options)
     @options = {
       :apikey             => API_KEY,
-      :keywordExtractMode => "strict",
-      :maxRetrieve        => 5,
-      :sentiment          => 1,
-      :url                => url
+      :keywordExtractMode => options[:keywordExtractMode] || "strict",
+      :maxRetrieve        => options[:maxRetrieve]        || 5,
+      :sentiment          => options[:sentiment]          || 1,
+      :url                => options[:url]
     }
   end
 
-  # calls API and extracts keyword sentiment
+  # extracts keyword sentiment based on specified options
   def extract_keyword_sentiment
     endpoint = BASE_URL + "calls/url/URLGetRankedKeywords"
     request_params = options.to_query
@@ -27,6 +27,10 @@ class AlchemyAPI
 
     @response = HTTParty.get( request_url )
 
-    return response["results"]["keywords"]["keyword"]
+    # if results are returned, then traverse response and return data
+    %w( results keywords keyword ).reduce(response) do |data, key|
+      return nil unless data.has_key? key
+      data = data[key]
+    end
   end
 end
