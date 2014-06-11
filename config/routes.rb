@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :sessions
+  # resources
+  resources :articles, only: [:show]
   resources :password_resets
+  resources :sessions
+  resources :users
 
   root "welcome#index"
 
