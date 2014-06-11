@@ -41,6 +41,7 @@ group :development, :test do
   gem 'simplecov', '~> 0.7.1'
 end
 
+gem 'sorcery'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
