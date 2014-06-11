@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+
   root "welcome#index"
+
 
   get 'password_resets/create'
 
@@ -13,4 +15,8 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
+
+  #to show search results
+  get "/search" => "articles#search"
+
 end
