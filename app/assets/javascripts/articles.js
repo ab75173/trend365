@@ -1,6 +1,8 @@
 $(function() {
+  var chart;
+  
   nv.addGraph(function() {
-    var chart = nv.models.discreteBarChart();
+    chart = nv.models.discreteBarChart();
 
     chart
       .x(function(d) {
@@ -11,50 +13,46 @@ $(function() {
       })
       .showValues( true );
 
-    d3.select( "#chart svg" )
-      .datum( exampleData() )
-      .call( chart );
+    getData()
+      .then( cleanData )
+      .then( plotData );
 
     nv.utils.windowResize( chart.update );
 
     return chart;
   });
 
-  function exampleData() {
-    return  [{
-      key: "Cumulative Return",
-      values: [{ 
-          "label" : "A Label" ,
-          "value" : -29.765957771107
-        } , 
-        { 
-          "label" : "B Label" , 
-          "value" : 0
-        } , 
-        { 
-          "label" : "C Label" , 
-          "value" : 32.807804682612
-        } , 
-        { 
-          "label" : "D Label" , 
-          "value" : 196.45946739256
-        } , 
-        { 
-          "label" : "E Label" ,
-          "value" : 0.19434030906893
-        } , 
-        { 
-          "label" : "F Label" , 
-          "value" : -98.079782601442
-        } , 
-        { 
-          "label" : "G Label" , 
-          "value" : -13.925743130903
-        } , 
-        { 
-          "label" : "H Label" , 
-          "value" : -5.1387322875705
-        }]
+  function getData() {
+    return $.ajax({
+      dataType: "json",
+      type: "get",
+      url: "/articles/1/sentiments?url=http://www.nytimes.com/2014/06/12/us/politics/after-eric-cantor-primary-defeat-house-republicans-take-stock.html"
+    });
+  }
+
+  function cleanData( keywords ) {
+    var values = [];
+    for ( var i = 0; i < keywords.length; i++ ) {
+      var keyword = keywords[i];
+
+      var cleanKeyword = { label: keyword.text,
+        value: keyword.sentiment.score || 0
+      };
+
+      values.push( cleanKeyword );
+    }
+
+    var data = [{
+      key: "Keyword Sentiment",
+      values: values
     }];
+
+    return data;
+  }
+
+  function plotData( data ) {
+    d3.select( "#chart svg" )
+      .datum( data )
+      .call( chart );
   }
 });
