@@ -39,6 +39,8 @@ group :development, :test do
   gem 'simplecov', '~> 0.7.1'
 end
 
+gem "letter_opener", :group => :development
+
 gem 'sorcery'
 
 # Use ActiveModel has_secure_password
