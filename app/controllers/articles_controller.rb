@@ -5,10 +5,20 @@ class ArticlesController < ApplicationController
 
   def search
     @keyword = params[:article][:name]
-    @results = get_search_results(@keyword)
+    nyt_response = get_search_results @keyword
+    binding.pry
+
+    # Grabs the headline and ID from each article search result
+    @results = nyt_response.map do |article|
+      {
+        headline: article["headline"]["main"],
+        id: article["_id"]
+      }
+    end
   end
 
   def show
+
   end
 
   private
