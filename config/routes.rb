@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :articles, only: [:show] do
     resources :sentiments, only: [:index]
   end
-  resources :users
+
+  #routes for saved/favorited articles
+  resources :favorites
+
+  resources :users, except: [:update, :edit]
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:destroy]
 

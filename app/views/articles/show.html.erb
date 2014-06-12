@@ -1,6 +1,10 @@
 <%= content_tag :h1, @result[:headline] %>
 <%= content_tag :p, @result[:snippet] %>
 
+<%= form_for @favorite do |f|%>
+  <%= f.submit "Save Article to Favorites", id: "create" %>
+<% end %>
+
 <div id="chart">
   <svg class="svg-bar-chart"></svg>
 </div>

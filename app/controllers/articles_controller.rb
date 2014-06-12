@@ -8,9 +8,12 @@ class ArticlesController < ApplicationController
     nyt_response = get_search_results @keyword
 
     # Grabs the headline and ID from each article search result
+
     @results = nyt_response.map do |article|
-      { id: article["_id"] }
+      { id: article["_id"],
+      headline: article["headline"]["main"] }
     end
+
   end
 
   def show
@@ -21,6 +24,7 @@ class ArticlesController < ApplicationController
       :snippet  => nyt_response["snippet"],
       :url      => nyt_response["web_url"],
     }
+    @favorite = Favorite.new
   end
 
   private
