@@ -17,7 +17,14 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    nyt_response = get_specific_article(params[:id])[0]
+    if (/[A-z]/) =~ params[:id]
+      nyt_id = params[:id]
+    else #treat it as a favorite
+      nyt_id = Favorite.find(params[:id]).nyt_id
+      @favorited = true
+    end
+
+    nyt_response = get_specific_article(nyt_id)[0]
 
     @result = {
       :headline => nyt_response["headline"]["main"],
@@ -26,6 +33,20 @@ class ArticlesController < ApplicationController
     }
     @favorite = Favorite.new
   end
+
+  def create
+    @favorite = Favorite.create({
+      nyt_id: params[:nyt_id],
+      title: params[:title],
+      user_id: params[:user_id]
+    })
+    redirect_to favorite_path(current_user)
+  end
+
+
+
+
+
 
   private
   def get_specific_article(id)

@@ -41,7 +41,7 @@
           <% if current_user %>
             <!--Logged in as <%= current_user.email %>-->
           <button type="text" class="btn btn-default" placeholder="Edit my account">
-            <%= link_to "Edit my account", edit_user_path(current_user) %>
+            <%= link_to "Edit my account"%>
           </button>
           <button type="text" class="btn btn-default" placeholder="Log Out">
             <%= link_to "Log out", logout_path %>

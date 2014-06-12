@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   #routes for saved/favorited articles
-  resources :favorites
+  resources :favorites, controller: 'articles'
 
   resources :users, except: [:update, :edit]
   resources :sessions, only: [:create, :destroy]
@@ -29,6 +29,6 @@ Rails.application.routes.draw do
 
 
   # articles routes
-  get "/search" => "articles#search"  # search for articles
+  get "/search" => "articles#search"  # search results
 
 end
