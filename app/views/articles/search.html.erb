@@ -2,8 +2,8 @@
 <h2>Search Results</h2>
   <ul>
     <% @results.each do |article| %>
-      <li>
+      <a href="<%= article["web_url"] %>"><li>
         <%= article["headline"]["main"]%>
-      </li>
+      </li></a>
     <% end %>
   </ul>
