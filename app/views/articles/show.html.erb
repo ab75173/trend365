@@ -3,7 +3,7 @@
 <% if @favorited %>
 &hearts;
 <% end %>
-<%= content_tag :h1, @result[:headline] %>
+<a href="<%= @result[:url] %>" class="h1"><%= @result[:headline] %></a>
 <%= content_tag :p, @result[:date] %>
 <%= content_tag :p, @result[:snippet] %>
 
