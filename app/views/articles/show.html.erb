@@ -1,3 +1,6 @@
+<%= javascript_include_tag "nv.d3.min" %>
+<%= javascript_include_tag "d3.min" %>
+<%= javascript_include_tag "articles" %>
 <% if @favorited %>
 &hearts;
 <% end %>
@@ -20,6 +23,7 @@
 <% end %>
 
 
-<div id="chart">
+
+<%= content_tag :div, id: "chart", data: { url: @result[:url] } do %>
   <svg class="svg-bar-chart"></svg>
-</div>
+<% end %>

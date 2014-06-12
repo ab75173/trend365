@@ -16,5 +16,6 @@ Bundler.require(*Rails.groups)
 module Trend365
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/lib)
+    Rails.application.config.assets.precompile += %w( d3.min.js nv.d3.min.js articles.js)
   end
 end

@@ -16,7 +16,7 @@ class AlchemyAPI
   #   - keywordExtractMode: defaults to "strict"
   #   - maxRetrieve: defaults to 5
   #   - sentiment: defaults to 1
-  def initialize(url, options)
+  def initialize(url, options = {})
     @options = {
       :apikey             => API_KEY,
       :keywordExtractMode => options[:keywordExtractMode] || "strict",

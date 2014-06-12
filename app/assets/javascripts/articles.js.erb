@@ -1,6 +1,8 @@
+
+
 $(function() {
   var chart;
-  
+
   // Draw chart
   nv.addGraph(function() {
     chart = nv.models.discreteBarChart();
@@ -28,12 +30,16 @@ $(function() {
   });
 
   function getData() {
+    var articleUrl = $( "#chart" ).data( "url" );
+
     return $.ajax({
       dataType: "json",
       type: "get",
-      url: "" // NOTE: Need to replace this with a dynamic value
+      url: '/articles/1/sentiments?url=' + articleUrl
     });
   }
+
+
 
   // Transforms the Alchemy API format to the d3 format
   function cleanData( keywords ) {
