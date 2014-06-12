@@ -1,18 +1,23 @@
 $(function() {
   var chart;
   
+  // Draw chart
   nv.addGraph(function() {
     chart = nv.models.discreteBarChart();
 
     chart
+      // Draws the X axis
       .x(function(d) {
         return d.label;
       })
+      // Draws the Y axis
       .y(function(d) {
         return d.value;
       })
+      // Show values on chart
       .showValues( true );
 
+    // Get the data via AJAX, clean it, then plot it.
     getData()
       .then( cleanData )
       .then( plotData );
@@ -26,10 +31,11 @@ $(function() {
     return $.ajax({
       dataType: "json",
       type: "get",
-      url: "/articles/1/sentiments?url=http://www.nytimes.com/2014/06/12/us/politics/after-eric-cantor-primary-defeat-house-republicans-take-stock.html"
+      url: "" // NOTE: Need to replace this with a dynamic value
     });
   }
 
+  // Transforms the Alchemy API format to the d3 format
   function cleanData( keywords ) {
     var values = [];
     for ( var i = 0; i < keywords.length; i++ ) {
@@ -50,6 +56,7 @@ $(function() {
     return data;
   }
 
+  // Plot the data in the element matching the CSS selector "#chart svg"
   function plotData( data ) {
     d3.select( "#chart svg" )
       .datum( data )
