@@ -1,8 +1,10 @@
-<%= content_tag :h1, @result[:headline] %>
-<%= content_tag :p, @result[:snippet] %>
 <% if @favorited %>
 &hearts;
-<% else %>
+<% end %>
+<%= content_tag :h1, @result[:headline] %>
+<%= content_tag :p, @result[:snippet] %>
+
+<% if !@favorited %>
   <%= form_for @favorite do |f|%>
     <%= hidden_field_tag :title, @result[:headline] %>
     <%= hidden_field_tag :user_id, current_user.id %>
