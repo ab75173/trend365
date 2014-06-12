@@ -17,7 +17,19 @@ $(function() {
         return d.value;
       })
       // Show values on chart
-      .showValues( true );
+      .showValues( true )
+      .forceY([-1,1]) // fixes y axis to center of graph
+
+      // Color weight for negative and positive graphs
+      //
+      //
+      // .attr("fill", function(d) {
+      //   if (d.value > 0) {
+      //     return "rgb(0, " + (d * 10) + ", 0 )";
+      //   } else if (d.value < 0) {
+      //     return "rgb(" + (d * 10) + "0, 0 )";
+      //   }
+      // });
 
     // Get the data via AJAX, clean it, then plot it.
     getData()
