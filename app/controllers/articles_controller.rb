@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
       title: params[:title],
       user_id: params[:user_id]
     })
-    redirect_to favorite_path(current_user)
+    redirect_to favorite_path(@favorite)
   end
 
   def destroy

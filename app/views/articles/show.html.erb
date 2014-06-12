@@ -4,19 +4,20 @@
 <%= content_tag :h1, @result[:headline] %>
 <%= content_tag :p, @result[:snippet] %>
 
-<% if !@favorited %>
-  <%= form_for @favorite do |f|%>
-    <%= hidden_field_tag :title, @result[:headline] %>
-    <%= hidden_field_tag :user_id, current_user.id %>
-    <%= hidden_field_tag :nyt_id, params[:id] %>
-    <%= f.submit "Save Article to Favorites" %>
-  <% end %>
-<% else %>
-  <%= form_for @favorite, method: 'delete' do |f|%>
-    <%= f.submit "Delete Article from Favorites" %>
+<% if current_user %>
+  <% if !@favorited %>
+    <%= form_for @favorite do |f|%>
+      <%= hidden_field_tag :title, @result[:headline] %>
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= hidden_field_tag :nyt_id, params[:id] %>
+      <%= f.submit "Save Article to Favorites" %>
+    <% end %>
+  <% else %>
+    <%= form_for @favorite, method: 'delete' do |f|%>
+      <%= f.submit "Delete Article from Favorites" %>
+    <% end %>
   <% end %>
 <% end %>
-
 
 
 <div id="chart">
