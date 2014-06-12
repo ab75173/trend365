@@ -1,8 +1,10 @@
 class SentimentsController < ApplicationController
   def index
-    api = AlchemyAPI.new url: params[:url]
+    # Get sentiment from AlchemyAPI for the specified URL
+    api = AlchemyAPI.new params[:sentiment][:url]
     @keywords = api.extract_keyword_sentiment
 
+    # Return keyword sentiment data as JSON
     if @keywords
       render json: @keywords
     else
