@@ -48,7 +48,8 @@ $(function() {
     for ( var i = 0; i < keywords.length; i++ ) {
       var keyword = keywords[i];
 
-      var cleanKeyword = { label: keyword.text,
+      var cleanKeyword = {
+        label: keyword.text,
         value: keyword.sentiment.score || 0
       };
 
