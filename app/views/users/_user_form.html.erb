@@ -1,4 +1,4 @@
-
+<div class="user_details">
   <%= bootstrap_form_for @user do |f| %>
     <% if @user.errors.any? %>
       <div class="error_messages">
@@ -16,7 +16,7 @@
       <%= f.password_field :password_confirmation %>
     <%= f.submit %>
   <% end %>
-
+</div>
 
 
 

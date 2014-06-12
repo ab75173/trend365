@@ -1,4 +1,5 @@
-<h1>Sign In</h1>
+<div class="user_details">
+  <h1>Sign In</h1>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :p, msg, class: name %>
@@ -19,5 +20,6 @@
   <div class="form-group"><%= submit_tag "Log in", class: "btn btn-default" %></div>
 <% end %>
 
-<h3>Forgot Password?</h3>
-<%= render 'forgot_password_form' %>
+  <h3>Forgot Password?</h3>
+  <%= render 'forgot_password_form' %>
+</div>

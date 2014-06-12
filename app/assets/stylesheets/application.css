@@ -14,3 +14,16 @@
  *= require_self
  *= require bootstrap.min
  */
+
+.container {
+  width: 100%;
+}
+
+.footer {
+  padding: 10px 10px 10px 50px;
+}
+
+.user_details {
+  width: 370px;
+  margin-left: 50px;
+}
