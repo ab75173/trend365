@@ -26,7 +26,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/home">HOME</a></li>
+        <li class="active"><a href="/">HOME</a></li>
         <li><a href="/search">YEAR TREND</a></li>
         <li><a href="/user">MY PROFILE</a></li>
       </ul>
@@ -34,28 +34,36 @@
         <div class="form-group">
           <%= text_field :article, :name, placeholder: "Search" %>
         </div>
-        <%= submit_tag "Submit", class: "btn btn-default" %>
+        <button type="submit" class="btn btn-default">Submit</button>
       <% end %>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-  <% if current_user %>
-    Logged in as <%= current_user.email %>.
-    <%= link_to "Edit my account", edit_user_path(current_user) %>
-    <%= link_to "Log out", logout_path %>
-  <% else %>
-    <%= link_to "Sign up", signup_path %> or
-    <%= link_to "log in", login_path %>.
-  <% end %>
-
-      </div>
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <% if current_user %>
+            <!--Logged in as <%= current_user.email %>-->
+          <button type="text" class="btn btn-default" placeholder="Edit my account">
+            <%= link_to "Edit my account", edit_user_path(current_user) %>
+          </button>
+          <button type="text" class="btn btn-default" placeholder="Log Out">
+            <%= link_to "Log out", logout_path %>
+          </button>
+          <% else %>
+          <button type="text" class="btn btn-default" placeholder="Sign up">
+            <%= link_to "Sign up", signup_path %>
+          </button>
+          <button type="text" class="btn btn-default" placeholder="Sign up">
+            <%= link_to "Log In", login_path %>
+          </button>
+          <% end %>
+        </div>
+      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 
 <!-- END NAVIGATION -->
+
+
 
 
 
