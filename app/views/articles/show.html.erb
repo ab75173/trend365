@@ -5,7 +5,7 @@
 <% end %>
 <a href="<%= @result[:url] %>" class="h1"><%= @result[:headline] %></a>
 <%= content_tag :p, @result[:date] %>
-<%= content_tag :p, @result[:snippet] %>
+<%= content_tag :h5, @result[:snippet] %>
 
 <% if current_user %>
   <% if !@favorited %>
@@ -22,8 +22,8 @@
   <% end %>
 <% end %>
 
-
-
 <%= content_tag :div, id: "chart", data: { url: @result[:url] } do %>
   <svg class="svg-bar-chart"></svg>
 <% end %>
+
+
