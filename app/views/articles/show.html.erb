@@ -4,6 +4,7 @@
 &hearts;
 <% end %>
 <%= content_tag :h1, @result[:headline] %>
+<%= content_tag :p, @result[:date] %>
 <%= content_tag :p, @result[:snippet] %>
 
 <% if current_user %>

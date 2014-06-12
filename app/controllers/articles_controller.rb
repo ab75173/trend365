@@ -30,11 +30,12 @@ class ArticlesController < ApplicationController
 
     #grab info from API regardless, using nyt_id from conditional
     nyt_response = get_specific_article(nyt_id)[0]
-
+    @date = nyt_response["pub_date"].to_s[0..9]
     @result = {
       :headline => nyt_response["headline"]["main"],
       :snippet  => nyt_response["snippet"],
       :url      => nyt_response["web_url"],
+      :date     => @date
     }
   end
 
