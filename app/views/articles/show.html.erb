@@ -9,9 +9,15 @@
     <%= hidden_field_tag :title, @result[:headline] %>
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :nyt_id, params[:id] %>
-    <%= f.submit "Save Article to Favorites", id: "create" %>
+    <%= f.submit "Save Article to Favorites" %>
+  <% end %>
+<% else %>
+  <%= form_for @favorite, method: 'delete' do |f|%>
+    <%= f.submit "Delete Article from Favorites" %>
   <% end %>
 <% end %>
+
+
 
 <div id="chart">
   <svg class="svg-bar-chart"></svg>

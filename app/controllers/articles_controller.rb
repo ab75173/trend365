@@ -17,13 +17,18 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    #if id params has letters in it, it is NYTimes ID (not persisted) and new Favorite
     if (/[A-z]/) =~ params[:id]
       nyt_id = params[:id]
-    else #treat it as a favorite
-      nyt_id = Favorite.find(params[:id]).nyt_id
+      @favorite = Favorite.new
+
+    else #if id params doesn't have letters in it, it is Trend365 ID (is persisted) and existing Favorite
       @favorited = true
+      @favorite = Favorite.find(params[:id])
+      nyt_id = @favorite.nyt_id
     end
 
+    #grab info from API regardless, using nyt_id from conditional
     nyt_response = get_specific_article(nyt_id)[0]
 
     @result = {
@@ -31,10 +36,10 @@ class ArticlesController < ApplicationController
       :snippet  => nyt_response["snippet"],
       :url      => nyt_response["web_url"],
     }
-    @favorite = Favorite.new
   end
 
   def create
+    # params coming from hidden fields in "save" form/button
     @favorite = Favorite.create({
       nyt_id: params[:nyt_id],
       title: params[:title],
@@ -43,7 +48,11 @@ class ArticlesController < ApplicationController
     redirect_to favorite_path(current_user)
   end
 
-
+  def destroy
+    @favorite = Favorite.find(params[:id])
+    @favorite.destroy
+    redirect_to root_path
+  end
 
 
 
