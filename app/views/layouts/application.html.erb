@@ -42,19 +42,19 @@
         <div class="form-group">
           <% if current_user %>
             <!--Logged in as <%= current_user.email %>-->
-          <button type="text" class="btn btn-default" placeholder="Edit my account">
-            <%= link_to "Edit my account"%>
-          </button>
-          <button type="text" class="btn btn-default" placeholder="Log Out">
-            <%= link_to "Log out", logout_path %>
-          </button>
+          <a href="<%= edit_user_path(current_user) %>" class="btn btn-default">
+            Edit Your Account
+          </a>
+          <a href="<%= logout_path %>" class="btn btn-default">
+            Log Out
+          </a>
           <% else %>
-          <button type="text" class="btn btn-default" placeholder="Sign up">
-            <%= link_to "Sign up", signup_path %>
-          </button>
-          <button type="text" class="btn btn-default" placeholder="Sign up">
-            <%= link_to "Log In", login_path %>
-          </button>
+          <a href="<%= signup_path %>" class="btn btn-default" >
+            Sign Up
+          </a>
+          <a href="<%= login_path %>" class="btn btn-default" >
+            Sign In
+          </a>
           <% end %>
         </div>
       </form>

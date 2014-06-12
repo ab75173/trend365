@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #routes for saved/favorited articles
   resources :favorites, controller: 'articles'
 
-  resources :users, except: [:update, :edit]
+  resources :users
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:destroy]
 
