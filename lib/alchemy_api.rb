@@ -39,7 +39,7 @@ class AlchemyAPI
     # If results are returned, traverse the response and return keyword data
     # Keyword data is in @response["results"]["keywords"]["keyword"] as of 6/12/14
     %w( results entities entity ).reduce(response) do |data, key|
-      return nil unless data.has_key? key
+      return nil unless data[key]
       data = data[key]
     end
   end
