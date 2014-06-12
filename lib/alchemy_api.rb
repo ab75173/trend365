@@ -20,7 +20,7 @@ class AlchemyAPI
     @options = {
       :apikey             => API_KEY,
       :keywordExtractMode => options[:keywordExtractMode] || "strict",
-      :maxRetrieve        => options[:maxRetrieve]        || 5,
+      :maxRetrieve        => options[:maxRetrieve]        || 10,
       :sentiment          => options[:sentiment]          || 1,
       :url                => url
     }

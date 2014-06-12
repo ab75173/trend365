@@ -1,5 +1,3 @@
-
-
 $(function() {
   var chart;
 
@@ -16,20 +14,11 @@ $(function() {
       .y(function(d) {
         return d.value;
       })
+
       // Show values on chart
       .showValues( true )
       .forceY([-1,1]) // fixes y axis to center of graph
-
-      // Color weight for negative and positive graphs
-      //
-      //
-      // .attr("fill", function(d) {
-      //   if (d.value > 0) {
-      //     return "rgb(0, " + (d * 10) + ", 0 )";
-      //   } else if (d.value < 0) {
-      //     return "rgb(" + (d * 10) + "0, 0 )";
-      //   }
-      // });
+      .staggerLabels( true );
 
     // Get the data via AJAX, clean it, then plot it.
     getData()
@@ -79,5 +68,14 @@ $(function() {
     d3.select( "#chart svg" )
       .datum( data )
       .call( chart );
+
+    d3.selectAll(".nv-bar")
+      .style("fill", function(d){
+        if (d.value > 0) {
+          return "hsl(120, " + parseInt(d.value * 100 + 25) + "%, 50%)";
+        } else if (d.value < 0) {
+          return "hsl(360, " + parseInt(d.value * -100 + 25) + "%, 50%)";
+        }
+      });
   }
 });
