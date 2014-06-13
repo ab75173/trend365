@@ -8,6 +8,7 @@
 <%= content_tag :h5, @result[:snippet] %>
 
 <% if current_user %>
+
   <% if !@favorited %>
     <%= form_for @favorite do |f|%>
       <%= hidden_field_tag :title, @result[:headline] %>
@@ -20,10 +21,14 @@
       <%= f.submit "Delete Article from Favorites" %>
     <% end %>
   <% end %>
+
+  <hr>
+
+  <a href= "mailto: ?subject=<%= @result[:headline] %>&body=Checkout This Rad Article I found on Trend365:  <%= @result[:url] %>" class= "btn btn-default" >Email to a friend</a>
+
 <% end %>
 
 <%= content_tag :div, id: "chart", data: { url: @result[:url] } do %>
   <svg class="svg-bar-chart"></svg>
 <% end %>
-
 
