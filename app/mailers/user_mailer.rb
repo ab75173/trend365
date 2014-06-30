@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "trend365@wdidc01.com"
+  default from: "team.trend.365@gmail.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

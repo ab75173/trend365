@@ -51,6 +51,7 @@ class ArticlesController < ApplicationController
     redirect_to favorite_path(@favorite)
   end
 
+
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
