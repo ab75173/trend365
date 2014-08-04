@@ -44,7 +44,7 @@ Trend365 was developed for a group project for the April 2014 Web Development Im
 
 
 ##Production
-Explore Trend 365 for yourself on [Heroku](http://nyt-sentiment.herokuapp.com/)
+Explore Trend 365 for yourself on [Heroku](http://trend365.herokuapp.com/)
 
 ##Backlog
 A full list of user stories can be found by looking at [this Pivotal Tracker](https://www.pivotaltracker.com/s/projects/1100676 "Pivotal Tracker")
